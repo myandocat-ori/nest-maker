@@ -1,0 +1,6 @@
+Copyright (c) 2026 duck. All rights reserved.
+
+둥지메이커(이 저장소의 모든 파일)의 저작권은 duck에게 있습니다.
+저작권자의 사전 서면 허락 없이 복제, 수정, 재배포, 판매할 수 없습니다.
+
+All rights reserved. No part of this software may be copied, modified, distributed, or sold without prior written permission from the copyright holder.

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!-- © 2026 duck. All rights reserved. 둥지메이커의 저작권은 duck에게 있습니다. 허락 없는 복제·재배포를 금지합니다. -->
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>둥지메이커</title>
+<meta name="description" content="코드 없이 드래그로 만드는 개인 홈페이지 편집기">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="theme-color" content="#5b5bf0">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@400;700&family=Gowun+Dodum&family=Jua&family=Do+Hyeon&family=Black+Han+Sans&family=Nanum+Pen+Script&family=Gaegu:wght@400;700&family=Inter:wght@400;600;800&family=Playfair+Display:wght@400;700&family=Space+Grotesk:wght@400;700&family=JetBrains+Mono:wght@400;700&family=Great+Vibes&family=Cormorant+Garamond:wght@400;600&family=Italiana&display=swap">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<div id="app">
+ <header id="top">
+  <div class="tl"><span class="brand">둥지<b>메이커</b></span></div>
+  <input id="ttl" type="text" aria-label="페이지 제목" maxlength="60">
+  <div class="grp" id="bps">
+   <button class="b" data-bp="d" title="데스크톱 (991px 초과)">🖥 데스크톱</button>
+   <button class="b" data-bp="t" title="태블릿 (991px 이하)">▭ 태블릿</button>
+   <button class="b" data-bp="m" title="모바일 (479px 이하)">📱 모바일</button>
+  </div>
+  <div class="grp" id="sts"><button class="b" data-st="b" title="기본 상태">기본</button><button class="b" data-st="o" title="클릭으로 펼쳐진 상태를 편집">펼침</button></div>
+  <div class="grp"><button class="b ic" data-act="zo" title="축소">−</button><span class="zl" id="zl">100%</span><button class="b ic" data-act="zi" title="확대">＋</button><button class="b" data-act="zf" title="화면에 맞추기">맞춤</button></div>
+  <div class="grp"><button class="b ic" id="bun" data-act="undo" title="실행 취소">↶</button><button class="b ic" id="bre" data-act="redo" title="다시 실행">↷</button></div>
+  <div class="tr">
+  <button class="b pri" id="bcomp" data-act="exitcomp" hidden>← 컴포넌트 편집 끝내기</button>
+  <button class="b" data-act="file" title="작업 파일 저장 · 열기">💾 파일</button>
+  <button class="b" data-act="tpl">템플릿</button>
+  <button class="b" id="bpv" data-act="pv">▶ 미리보기</button>
+  <button class="b pri" data-act="exp">내보내기</button>
+  </div>
+ </header>
+
+ <aside id="left">
+  <div class="ts" id="tsl"><button data-pane="add">추가</button><button data-pane="tree">구조</button></div>
+  <div class="pane" id="p-add"></div>
+  <div class="pane" id="p-tree"></div>
+ </aside>
+
+ <main id="main">
+  <div id="cv"><div id="cvin"><div id="bpl"></div><div id="scw"><div id="sc"><div class="pg" id="pg"></div></div></div>
+   <div id="ov"><div id="hv"></div><div id="selw"></div><div id="ind"></div></div></div></div>
+ </main>
+
+ <aside id="right">
+  <div class="ts" id="tsr"><button data-pane="style">스타일</button><button data-pane="set">설정</button><button data-pane="fx">효과</button><button data-pane="css">CSS</button></div>
+  <div class="pane" id="p-style"></div>
+  <div class="pane" id="p-set"></div>
+  <div class="pane" id="p-fx"></div>
+  <div class="pane" id="p-css"></div>
+ </aside>
+
+ <nav id="bar">
+  <button data-pane="add"><i>＋</i>추가</button>
+  <button data-pane="tree"><i>🌲</i>구조</button>
+  <button data-pane="style"><i>🎨</i>스타일</button>
+  <button data-pane="set"><i>⚙</i>설정</button>
+  <button data-pane="fx"><i>✨</i>효과</button>
+  <button data-pane="css"><i>{ }</i>CSS</button>
+ </nav>
+ <footer id="ft">© 2026 duck. All rights reserved. · 둥지메이커의 저작권은 duck에게 있어요. 허락 없이 복제·재배포할 수 없어요.</footer>
+</div>
+
+<style id="ds"></style>
+<style id="dc"></style>
+<div id="gh"></div><div id="tip"></div>
+<div id="modal"><div class="mb" id="mb"></div></div>
+<div id="toast"></div>
+<input type="file" id="fi" accept="image/*" hidden>
+<input type="file" id="fj" accept=".json,application/json" hidden>
+<script src="js/app.js" defer></script>
+</body>
+</html>
