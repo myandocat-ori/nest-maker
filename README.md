@@ -2,9 +2,7 @@
 
 코드 없이 드래그로 개인 홈페이지를 만드는 편집기예요. 서버 없이 정적 파일만으로 동작해요.
 
-## 저작권
-
-© 2026 duck. All rights reserved. 둥지메이커의 저작권은 duck에게 있어요. 자세한 내용은 `LICENSE.txt`를 보세요.
+© 2026 duck. All rights reserved. 자세한 내용은 `LICENSE.txt` 참조.
 
 ## 구성
 
