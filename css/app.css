@@ -10,8 +10,8 @@ button{cursor:pointer}
 #ft{grid-area:ft;text-align:center;font-size:11px;color:var(--mu);padding:4px 10px;background:var(--pn);border-top:1px solid var(--bd);letter-spacing:.01em}
 #top{grid-area:top;display:flex;align-items:center;gap:6px;padding:6px max(10px,env(safe-area-inset-right)) 6px max(10px,env(safe-area-inset-left));background:var(--pn);border-bottom:1px solid var(--bd);overflow-x:auto;white-space:nowrap;scrollbar-width:none}
 #top::-webkit-scrollbar{display:none}
-.brand{font-weight:800;font-size:15px;letter-spacing:-.02em;margin-right:4px}
-.brand b{color:var(--ac)}
+.brand{font-weight:800;font-size:15px;letter-spacing:-.02em;margin-right:4px;color:var(--tx)}
+.brand b{color:inherit;font-weight:inherit}
 #ttl{width:130px;min-width:90px;border:1px solid transparent;background:transparent;border-radius:8px;padding:5px 8px;font-weight:600}
 #ttl:hover,#ttl:focus{border-color:var(--bd);background:var(--bg);outline:none}
 .sp1{flex:1}
@@ -25,7 +25,7 @@ button{cursor:pointer}
 .grp{display:flex;gap:0;border:1px solid var(--bd);border-radius:8px;overflow:hidden;flex:none}
 .grp .b{border:0;border-radius:0;border-right:1px solid var(--bd)}
 .grp .b:last-child{border-right:0}
-.zl{min-width:44px;text-align:center;color:var(--mu);font-variant-numeric:tabular-nums}
+.zl{min-width:48px;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1;color:var(--mu);font-variant-numeric:tabular-nums;font-size:12.5px}
 #left{grid-area:left}#right{grid-area:right}
 #left,#right{background:var(--pn);display:flex;flex-direction:column;min-height:0;min-width:0}
 #left{border-right:1px solid var(--bd)}#right{border-left:1px solid var(--bd)}
