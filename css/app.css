@@ -146,6 +146,7 @@ details.sec:not([open])>summary::after{content:"▸"}
 .mb h3{margin:0 0 4px;font-size:16px}
 .mb p{color:var(--mu);margin:2px 0 12px}
 .mb textarea{width:100%;min-height:220px;border:1px solid var(--bd);background:var(--bg);border-radius:8px;padding:8px;font:12px 'JetBrains Mono',monospace}
+.tsec{margin:0 0 12px;border:1px solid var(--bd);border-radius:12px;padding:0 12px 12px}.tsec>summary{cursor:pointer;font-weight:700;padding:12px 0 8px;list-style:none;display:flex;align-items:center;gap:6px}.tsec>summary::-webkit-details-marker{display:none}.tsec>summary::before{content:'▾';display:inline-block;transition:transform .15s;color:var(--mu)}.tsec:not([open])>summary::before{transform:rotate(-90deg)}.tsec:not([open]){padding-bottom:0}
 .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}
 .card{border:1px solid var(--bd);background:var(--pn);border-radius:12px;padding:12px;text-align:left}
 .card:hover{border-color:var(--ac);background:var(--ac2)}
