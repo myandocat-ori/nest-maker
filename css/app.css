@@ -152,6 +152,7 @@ details.sec:not([open])>summary::after{content:"▸"}
 .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}
 .card{border:1px solid var(--bd);background:var(--pn);border-radius:12px;padding:12px;text-align:left}
 .card:hover{border-color:var(--ac);background:var(--ac2)}
+.cards.sm{grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:8px}.cards.sm .card{padding:7px 12px;display:flex;flex-direction:row;align-items:center;gap:8px}.cards.sm .card i{font-size:18px;margin:0;line-height:1}.cards.sm .card b{font-size:13px}
 .card b{display:block;font-size:14px}.card span{color:var(--mu);font-size:12px}.card i{font-style:normal;font-size:26px;display:block;margin-bottom:6px}
 .row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
 .row .b{flex:1}
