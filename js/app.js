@@ -1781,7 +1781,10 @@ function renderFx(){
  box.innerHTML=h}
 function simulate(id){const el=nodeEl(id);if(!el)return;el.classList.add('sim');setTimeout(()=>{const e2=nodeEl(id);if(e2)e2.classList.remove('sim')},1500)}
 $('#p-fx').addEventListener('change',e=>{const t=e.target;if(!(t.dataset.p||t.dataset.u))return;styleEv(e,true);refresh();renderFx()});
-$('#p-fx').addEventListener('input',e=>{const t=e.target;if(t.dataset.c&&t.dataset.p){styleEv(e,false);renderPage()}});
+let fxRaf=0;$('#p-fx').addEventListener('input',e=>{const t=e.target;if(!(t.dataset.c&&t.dataset.p))return;const v=t.value,tx=t.parentNode.querySelector('[data-ct]');if(tx)tx.value=v;
+ if(fxRaf)cancelAnimationFrame(fxRaf);fxRaf=requestAnimationFrame(()=>{fxRaf=0;const f=find(S.sel);if(!f)return;const n=f.n;setS(n,t.dataset.p,v);
+  const cl=t.dataset.p==='--hvb'?'hvb':'hvt';const el=document.querySelector('.pg .'+n.k);
+  if(!el||!el.classList.contains(cl)){renderPage();commitSoon()}else{el.style.setProperty(t.dataset.p,v);clearTimeout(cT);cT=setTimeout(commit,600)}})});
 $('#p-fx').addEventListener('click',e=>{const rt=e.target.closest('[data-reset]');if(!rt)return;const f=find(S.sel);if(!f)return;setS(f.n,rt.dataset.reset,'');commit();refresh();renderFx()});
 $('#p-fx').addEventListener('click',e=>{
  const a=e.target.closest('[data-act]');if(a){act(a.dataset.act);return}
