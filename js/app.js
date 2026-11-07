@@ -804,7 +804,7 @@ function buildCSS(ex,roots,used,nocustom){
  Object.keys(doc.comps||{}).forEach(cid=>{if(ex||cid!==doc.compEditing)walk(doc.comps[cid].node,one)});
  rts.forEach(r=>walk(r,one));
  let o=resetCSS(ex)+curCSS(ex)+fxCSS(ex,used)+((!used||used.board)?boardCSS(ex):'')+((!used||used.lp)?lpCSS(ex):'')+((!used||used.cal)?calCSS(ex):'')+((!used||used.clk)?clkCSS(ex):'')+((!used||used.wx)?wxCSS(ex):'')+((!used||used.dcal)?dcCSS(ex):'')+((!used||used.dday)?ddCSS(ex):'')+((!used||used.guest)?gbCSS(ex):'')+((!used||used.orbit)?obCSS(ex):'')+((!used||used.drift)?drCSS(ex):'')+((!used||used.hole)?holeCSS(ex):'')+((!used||used.chk)?chkCSS(ex):'')+((!used||used.memo)?memoCSS(ex):'')+((!used||used.cap)?capCSS(ex):'')+((!used||used.intro)?introCSS(ex):'')+'.hvb,.hvt{transition:background-color .18s ease,color .18s ease}\n.hvb:hover{background-color:var(--hvb)!important}\n.hvt:hover{color:var(--hvt)!important}\n'+R.d;
- if(ex){if(R.t)o+='@media (max-width:991px){\n'+R.t+'}\n';if(R.m)o+='@media (max-width:479px){\n'+R.m+'}\n';o+=RO;if(!nocustom&&doc.css&&doc.css.trim())o+='\n/* 사용자 CSS */\n'+doc.css+'\n'}
+ if(ex){if(R.t&&doc.resp!==false)o+='@media (max-width:991px){\n'+R.t+'}\n';if(R.m&&doc.resp!==false)o+='@media (max-width:479px){\n'+R.m+'}\n';o+=RO;if(!nocustom&&doc.css&&doc.css.trim())o+='\n/* 사용자 CSS */\n'+doc.css+'\n'}
  else o+=R.t+R.m+RO;
  return o}
 function fontsUsed(roots){const set=new Set();const fu=n=>{['d','t','m'].forEach(b=>{const f=n.s[b]['font-family'];if(f)FONTS.forEach(x=>{if(f.indexOf("'"+x[0]+"'")>=0)set.add(x[1])})})};syncComp();(roots||[pageRoot()]).forEach(r=>walk(r,fu));Object.keys(doc.comps||{}).forEach(c=>walk(doc.comps[c].node,fu));return Array.from(set).map(q=>'family='+q).join('&')}
@@ -820,7 +820,7 @@ function sanitizeDoc(){
 function buildHTML(){
  sanitizeDoc();
  const fam=fontsUsed();const rt=pageRoot();
- return '<!DOCTYPE html>\n<html lang="ko">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n<meta name="referrer" content="strict-origin-when-cross-origin">\n<title>'+E(doc.title)+'</title>\n'+(doc.icon?'<link rel="icon" href="'+(doc.icon.k==='emoji'?iconSvg(doc.icon.v):E(rs(doc.icon.v)))+'">\n':'')+(doc.idx===true?'':'<meta name="robots" content="noindex,nofollow,noarchive">\n')+(fam?'<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="stylesheet" href="https://fonts.googleapis.com/css2?'+fam+'&display=swap">\n':'')+'<style>\n'+buildCSS(true,[rt]).replace(/<\/style/gi,'\\3c /style')+'</style>\n</head>\n<body class="'+rt.k+'">\n'+rt.c.map(c=>nodeHTML(c,true)).join('\n')+'\n<'+'script>'+ANIMJS+CLICKJS+WHEELJS+(/data-lp=/.test(rt.c.map(c=>nodeHTML(c,true)).join(''))?LPJS:'')+(/data-cal=/.test(rt.c.map(c=>nodeHTML(c,true)).join(''))?CALJS:'')+(/data-clk=/.test(rt.c.map(c=>nodeHTML(c,true)).join(''))?CLKJS:'')+(/data-wx=/.test(rt.c.map(c=>nodeHTML(c,true)).join(''))?WXJS:'')+(/data-dcal=/.test(rt.c.map(c=>nodeHTML(c,true)).join(''))?DCJS:'')+(/data-dday=/.test(rt.c.map(c=>nodeHTML(c,true)).join(''))?DDJS:'')+(/data-orbit=/.test(rt.c.map(c=>nodeHTML(c,true)).join(''))?ORBITJS:'')+(/data-drift=/.test(rt.c.map(c=>nodeHTML(c,true)).join(''))?DRIFTJS:'')+(/data-hole=|data-hmp=/.test(rt.c.map(c=>nodeHTML(c,true)).join(''))?HOLEJS:'')+(/data-guest=/.test(rt.c.map(c=>nodeHTML(c,true)).join(''))?'window.NJ_CONFIG='+JSON.stringify({fk:((doc.sb||{}).fk||'').trim(),fp:((doc.sb||{}).fp||'').trim()}).replace(/</g,'\\u003c')+';'+GUESTJS:'')+(/data-chk=/.test(rt.c.map(c=>nodeHTML(c,true)).join(''))?CHKJS:'')+'<\/script>\n</body>\n</html>\n'}
+ return '<!DOCTYPE html>\n<html lang="ko">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="'+(doc.resp===false?'width=1280':'width=device-width, initial-scale=1')+'">\n<meta name="referrer" content="strict-origin-when-cross-origin">\n<title>'+E(doc.title)+'</title>\n'+(doc.icon?'<link rel="icon" href="'+(doc.icon.k==='emoji'?iconSvg(doc.icon.v):E(rs(doc.icon.v)))+'">\n':'')+(doc.idx===true?'':'<meta name="robots" content="noindex,nofollow,noarchive">\n')+(fam?'<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="stylesheet" href="https://fonts.googleapis.com/css2?'+fam+'&display=swap">\n':'')+'<style>\n'+buildCSS(true,[rt]).replace(/<\/style/gi,'\\3c /style')+'</style>\n</head>\n<body class="'+rt.k+'">\n'+rt.c.map(c=>nodeHTML(c,true)).join('\n')+'\n<'+'script>'+ANIMJS+CLICKJS+WHEELJS+(/data-lp=/.test(rt.c.map(c=>nodeHTML(c,true)).join(''))?LPJS:'')+(/data-cal=/.test(rt.c.map(c=>nodeHTML(c,true)).join(''))?CALJS:'')+(/data-clk=/.test(rt.c.map(c=>nodeHTML(c,true)).join(''))?CLKJS:'')+(/data-wx=/.test(rt.c.map(c=>nodeHTML(c,true)).join(''))?WXJS:'')+(/data-dcal=/.test(rt.c.map(c=>nodeHTML(c,true)).join(''))?DCJS:'')+(/data-dday=/.test(rt.c.map(c=>nodeHTML(c,true)).join(''))?DDJS:'')+(/data-orbit=/.test(rt.c.map(c=>nodeHTML(c,true)).join(''))?ORBITJS:'')+(/data-drift=/.test(rt.c.map(c=>nodeHTML(c,true)).join(''))?DRIFTJS:'')+(/data-hole=|data-hmp=/.test(rt.c.map(c=>nodeHTML(c,true)).join(''))?HOLEJS:'')+(/data-guest=/.test(rt.c.map(c=>nodeHTML(c,true)).join(''))?'window.NJ_CONFIG='+JSON.stringify({fk:((doc.sb||{}).fk||'').trim(),fp:((doc.sb||{}).fp||'').trim()}).replace(/</g,'\\u003c')+';'+GUESTJS:'')+(/data-chk=/.test(rt.c.map(c=>nodeHTML(c,true)).join(''))?CHKJS:'')+'<\/script>\n</body>\n</html>\n'}
 
 /* ---------- board (Supabase) ---------- */
 const RICHJS='('+(function(){
@@ -2048,7 +2048,7 @@ async function buildSite(){
    const body=wrapMain(root.c);
    const title=pg.title||(i===0?doc.title:pg.name+' | '+doc.title);
    const url=site?site+'/'+(i===0?'':pg.slug+'.html'):'';
-   let head='<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+E(title)+'</title>'+ico;
+   let head='<meta charset="utf-8"><meta name="viewport" content="'+(doc.resp===false?'width=1280':'width=device-width,initial-scale=1')+'"><title>'+E(title)+'</title>'+ico;
    if(pg.desc)head+='<meta name="description" content="'+E(pg.desc)+'">';
    if(url)head+='<link rel="canonical" href="'+E(url)+'">';
    const pst=pg.kind==='post'&&i>0?pm[pg.id]:null;if(hide)head+='<meta name="robots" content="noindex,nofollow,noarchive,noimageindex">';else if(pst)head+='<meta name="robots" content="noindex">';
@@ -2158,7 +2158,8 @@ function openExport(){
  const warns=lint();
  modal('<h3>내보내기</h3><p>페이지마다 HTML 파일, 공통 CSS·JS, 가볍게 줄인 이미지 폴더를 zip 하나로 받아요. 압축을 풀어 그대로 호스팅(Netlify, GitHub Pages 등)에 올리면 돼요.</p>'
   +'<div class="f"><span class="fl" style="width:84px">사이트 주소</span><span class="fc"><input type="text" id="siteu" value="'+E(doc.site||'')+'" placeholder="https://example.com (선택 · sitemap·검색용)"></span></div>'
- +'<label class="f" style="gap:8px;align-items:flex-start"><input type="checkbox" id="idxon"'+(doc.idx===true?' checked':'')+'><span>검색엔진(구글 등)에 노출 허용 <small style="opacity:.7">— 끄면 모든 페이지에 검색 제외 표시(noindex)가 들어가요</small></span></label>'
+ +'<label class="f" style="gap:8px;align-items:flex-start"><input type="checkbox" id="respon"'+(doc.resp!==false?' checked':'')+'><span>반응형 지원 <small style="opacity:.7">— 끄면 태블릿·모바일 설정을 쓰지 않고, 폰에서도 데스크톱 화면이 그대로(축소되어) 보여요</small></span></label>'
++'<label class="f" style="gap:8px;align-items:flex-start"><input type="checkbox" id="idxon"'+(doc.idx===true?' checked':'')+'><span>검색엔진(구글 등)에 노출 허용 <small style="opacity:.7">— 끄면 모든 페이지에 검색 제외 표시(noindex)가 들어가요</small></span></label>'
  +'<div class="gt" style="margin:12px 0 4px">게시판 연결 — 게시판 블록을 쓸 때만 (Notion은 별도 입력 없음)</div>'
   +'<div class="f"><span class="fl" style="width:84px">프로젝트 URL</span><span class="fc"><input type="text" data-sb="url" value="'+E((doc.sb||{}).url||'')+'" placeholder="https://xxxx.supabase.co"></span></div>'
   +'<div class="f"><span class="fl" style="width:84px">공개 키</span><span class="fc"><input type="text" data-sb="key" value="'+E((doc.sb||{}).key||'')+'" placeholder="sb_publishable_… (Secret key는 안 돼요)"></span></div>'
@@ -2172,7 +2173,8 @@ function openExport(){
   +'<p style="margin-top:12px">이 파일은 공개(배포)용 완성물이에요. 나중에 이어서 편집하거나 디자인을 공유하려면 <b>💾 파일</b> 메뉴를 쓰세요.</p><div class="row"><button class="b" data-close="1">닫기</button></div>'
   +'<p class="note" style="margin-top:14px;font-size:11px;line-height:1.6;opacity:.75"><b>올릴 수 있는 곳</b> · 호스팅: Netlify, Cloudflare Pages, GitHub Pages, Vercel, Firebase Hosting · 게시판 DB: Supabase, Firebase, Notion · 도메인: 위 호스팅 모두 내 도메인 연결 가능 (Notion 자동 동기화는 GitHub 연결 필요)</p>');
  $('#mb').onchange=e=>{const t=e.target,k=t.dataset.sb;if(!k)return;let v=t.value.trim();if(k==='key'&&keyIsSecret(v)){toast('Secret key는 사이트에 넣으면 안 돼요. Publishable key를 쓰세요');t.value='';v=''}doc.sb=doc.sb||{};doc.sb[k]=v;commit()};
- $('#idxon').onchange=e=>{doc.idx=e.target.checked?true:undefined;commit()};
+ $('#respon').onchange=e=>{doc.resp=e.target.checked?undefined:false;commit()};
+$('#idxon').onchange=e=>{doc.idx=e.target.checked?true:undefined;commit()};
  $('#siteu').onchange=e=>{doc.site=e.target.value.trim().replace(/\/+$/,'');commit()};
  $('#mb').onclick=async ev=>{const x=ev.target.closest('[data-x]');if(!x)return;const k=x.dataset.x;
   if(k==='zip'){toast('사이트를 만드는 중…');try{const files=await buildSite();const blob=await makeZip(files);await saveFile(fn+'.zip',blob,'application/zip')}catch(e){X=null;toast('내보내기에 실패했어요: '+(e&&e.message||e))}}
